@@ -91,17 +91,24 @@ const HistoryItem = props => {
   return (
     <li className="history-details">
       <p className="time">{timeAccessed}</p>
-      <img className="logo" src={logoUrl} alt="domain logo" />
-      <p className="title">{title}</p>
-      <p className="url">{domainUrl}</p>
-      <button data-testid="delete" type="button">
-        <img
-          onClick={deleteHistory}
-          className="delete-icon"
-          src="https://assets.ccbp.in/frontend/react-js/delete-img.png"
-          alt="delete"
-        />
-      </button>
+      <div className="sm-adjust">
+        <img className="logo" src={logoUrl} alt="domain logo" />
+        <div className="site-details">
+          <div className="title-url">
+            <p className="title">{title}</p>
+            <p className="url">{domainUrl}</p>
+          </div>
+          <div className="button">
+            <button onClick={deleteHistory} data-testid="delete" type="button">
+              <img
+                className="delete-icon"
+                src="https://assets.ccbp.in/frontend/react-js/delete-img.png"
+                alt="delete"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
     </li>
   )
 }
@@ -128,7 +135,7 @@ class App extends Component {
   render() {
     const {searchInput, historyList} = this.state
     const searchedHistory = historyList.filter(eachHistory =>
-      eachHistory.title.toLowerCase().includes(searchInput),
+      eachHistory.title.toLowerCase().includes(searchInput.toLowerCase()),
     )
     let programme
 
